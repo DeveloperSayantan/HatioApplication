@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    
+</head>
+<body class="d-flex align-items-center py-4 bg-body-tertiary" >
+
+    <main class="form-signin w-auto m-auto">
+        <form th:action="@{/registerSave}" th:object="${userForm}" th:method="post" onsubmit="return validateForm()"autocomplete="off">
+            <svg xmlns="http://www.w3.org/2000/svg" height="3.5em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#2b65ca}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+          <h1 class="h3 mb-3 fw-normal">Please Sign up</h1>
+      
+          <div class="form-floating p-1">
+            <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="abc@gmail.com" required>
+            <label for="floatingInput">Email </label>
+            <p style="color: orangered;" th:text="${errorEmail}"></p>
+          </div>
+          
+         <div class="form-floating p-1">
+            <input type="password" name="password"  class="form-control" id="password" placeholder="Password" required>
+            <label for="floatingPassword">Password</label>
+          </div>
+          
+          <div class="form-floating p-1">
+            <input type="password" name="confirmPassword"  class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+            <label for="floatingPassword">Confirm Password</label>
+            <p style="color: orangered;" id="passwordError"></p>
+          </div>
+          <br>
+          <button class="btn btn-primary w-100 py-2" id="signUp" type="submit">Sign up</button>
+          <p style="color: limegreen;" th:text="${success}"></p>
+          <p class="pt-2">Back to Login?<a th:href="@{/index}" style="text-decoration: none;"> Sign in</a></p>
+          <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
+        </form>
+      </main>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var passwordError = document.getElementById("passwordError");
+            
+            if (password !== confirmPassword) {
+                passwordError.innerText = "Passwords does not match!";
+                return false;
+            } else {
+                passwordError.innerText = "";
+                return true;
+            }
+        }
+    </script>
+
+</body>
+</html>

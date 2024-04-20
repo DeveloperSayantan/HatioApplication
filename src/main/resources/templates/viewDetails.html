@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+   <div class="container">
+        <h4>Project Title: <span th:text="${project.title}"></span></h4>
+        <p>Create Date: <span th:text="${#dates.format(project.createDate, 'yyyy-MM-dd')}"></span></p>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Todo ID</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Create Date</th>
+                    <th scope="col">Update Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="todo : ${project.listOfTodos}">
+                    <td th:text="${todo.id}"></td>
+                    <td th:text="${todo.description}"></td>
+                    <td th:text="${todo.createDate}"></td>
+                    <td th:text="${todo.updateDate}"></td>
+                    <td th:text="${todo.status}"></td>
+                    <td>
+                        <!-- Edit Todo Button -->
+                        <!-- Edit Todo Button -->
+						<a th:href="@{'/editTodo/' + ${todo.id}}" class="btn btn-primary">Edit</a>
+
+
+                        <!-- Delete Todo Button -->
+                        <form method="get" th:action="@{/deleteTodo/{id}(id=${todo.id})}" style="display: inline;">
+    					<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Add New Todo Form -->
+       <a class="btn btn-primary" th:href="@{'/viewTodo/'+${project.id}}">Add Todo</a>
+       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: limegreen;" th:text="${todo}"></span></p> 
+     
+        
+    </div>
+    
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MTxaIPeAiATNQ2pKHMjxMQvFd04R2vi0HE7rO+L8XEAtJTM8G2CHf3U8fikx4zYf" crossorigin="anonymous"></script>
+</body>
+</html>
