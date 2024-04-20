@@ -11,6 +11,12 @@
 
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary" >
+	
+	<header class="mx-4">
+    <div class="container">
+      <h1 class="float-md-start mb-0" style="font-family: cursive; font-weight: 800;">Welcome to Todo App</h1>
+    </div>
+  </header>
     
     <main class="form-signin w-auto m-auto">
         <form th:action="@{/loginCustomer}" th:method="post" autocomplete="off">
@@ -49,7 +55,7 @@
           </div>
           <button class="btn btn-primary w-100 py-2" type="submit" id="login">Sign in</button><br><br>
           <p>Don't have an account? Please <a th:href="@{/register}" style="text-decoration: none;">Sign up</a></p>
-          <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
+          <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
         </form>
       </main>
 
